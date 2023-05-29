@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "me.champeau.jmh" version "0.7.1"
 }
 
 group = 'me.alekseinovikov'
@@ -10,10 +11,23 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'ma.glasnost.orika:orika-core:1.5.4'
+    implementation 'net.sf.dozer:dozer:5.5.1'
+    implementation 'com.googlecode.jmapper-framework:jmapper-core:1.6.0.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
 }
 
-test {
-    useJUnitPlatform()
+jmh {
+    jvmArgs = ["--add-opens java.base/java.lang=ALL-UNNAMED"]
+    timeOnIteration = '10s'
+    iterations = 5
+    fork = 4
+
+    warmup = '5s'
+    warmupIterations = 5
+
+    resultsFile = project.file("${project.buildDir}/reports/jmh/results.txt")
 }

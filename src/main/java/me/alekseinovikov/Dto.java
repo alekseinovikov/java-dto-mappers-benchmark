@@ -1,7 +1,10 @@
 package me.alekseinovikov;
 
+import com.googlecode.jmapper.annotations.JGlobalMap;
+
 import java.util.Objects;
 
+@JGlobalMap
 public class Dto {
     private Long id;
     private String name;
@@ -81,10 +84,24 @@ public class Dto {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof final Dto entity)) {
+        if (!(o instanceof final Dto dto)) {
             return false;
         }
-        return Objects.equals(id, entity.id) && Objects.equals(name, entity.name) && Objects.equals(description, entity.description) && Objects.equals(number, entity.number) && Objects.equals(flag, entity.flag) && Objects.equals(price, entity.price);
+        return Objects.equals(id, dto.id)
+                && Objects.equals(name, dto.name)
+                && Objects.equals(description, dto.description)
+                && Objects.equals(number, dto.number)
+                && Objects.equals(flag, dto.flag)
+                && Objects.equals(price, dto.price);
+    }
+
+    public boolean equals(final Entity entity) {
+        return Objects.equals(id, entity.getId())
+                && Objects.equals(name, entity.getName())
+                && Objects.equals(description, entity.getDescription())
+                && Objects.equals(number, entity.getNumber())
+                && Objects.equals(flag, entity.getFlag())
+                && Objects.equals(price, entity.getPrice());
     }
 
     @Override

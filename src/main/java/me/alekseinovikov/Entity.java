@@ -1,7 +1,10 @@
 package me.alekseinovikov;
 
+import com.googlecode.jmapper.annotations.JGlobalMap;
+
 import java.util.Objects;
 
+@JGlobalMap
 public class Entity {
     private Long id;
     private String name;
