@@ -11,13 +11,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'org.modelmapper:modelmapper:3.2.2'
     implementation 'ma.glasnost.orika:orika-core:1.5.4'
-    implementation 'net.sf.dozer:dozer:5.5.1'
+    implementation 'com.github.dozermapper:dozer-core:7.0.0'
     implementation 'com.googlecode.jmapper-framework:jmapper-core:1.6.0.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.6.3"
 }
 
 jmh {

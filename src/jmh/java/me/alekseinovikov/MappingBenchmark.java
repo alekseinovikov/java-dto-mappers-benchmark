@@ -1,12 +1,12 @@
 package me.alekseinovikov;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import com.googlecode.jmapper.JMapper;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 import org.modelmapper.ModelMapper;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
@@ -19,10 +19,11 @@ public class MappingBenchmark {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final JMapper<Dto, Entity> jMapper = new JMapper<>(Dto.class, Entity.class);
-    private final Mapper dozerMapper = new DozerBeanMapper();
+    private final Mapper dozerMapper = DozerBeanMapperBuilder.buildDefault();
     private final MapperFactory orikaMapperFactory = new DefaultMapperFactory.Builder().build();
     private final ModelMapper modelMapper = new ModelMapper();
     private final MapperFacade orikaMapper;
+
     {
         orikaMapperFactory.classMap(Entity.class, Dto.class)
                 .field("id", "id")
